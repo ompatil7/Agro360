@@ -1,0 +1,15 @@
+/* index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --blue-500: #3b82f6;
+  --indigo-300: #818cf8;
+  --blue-300: #60a5fa;
+  --violet-200: #c4b5fd;
+  --blue-400: #3b82f6;
+  --transparent: rgba(0, 0, 0, 0);
+}
