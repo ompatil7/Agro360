@@ -38,27 +38,34 @@ exports.resizeUserImage = catchAsync(async (req, res, next) => {
     if (!req.file) return next();
 
     try {
+      // Resize the image
       const resizedImageBuffer = await sharp(req.file.buffer)
         .resize({ width: 474, height: 497 })
         .toFormat("jpeg")
         .jpeg({ quality: 90 })
         .toBuffer();
 
-      const cloudinaryUpload = promisify(cloudinary.uploader.upload_stream);
-      const result = await cloudinaryUpload(
-        {
-          folder: "cropinsurance/users",
-          resource_type: "auto",
-        },
-        (error, result) => {
-          if (error) throw error;
-          return result;
-        }
-      ).end(resizedImageBuffer);
+      // Fix the Cloudinary upload process
+      const result = await new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          {
+            folder: "cropinsurance/users",
+            resource_type: "auto",
+          },
+          (error, result) => {
+            if (error) return reject(error);
+            resolve(result);
+          }
+        );
+
+        // Write buffer to the stream
+        uploadStream.end(resizedImageBuffer);
+      });
 
       req.body.photo = result.secure_url;
       next();
     } catch (err) {
+      console.error("Image processing error:", err);
       return next(new AppError("Image processing failed", 500));
     }
   });

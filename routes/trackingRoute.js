@@ -32,4 +32,11 @@ router.get(
   policyEnrollmentController.getAgentEnrollments
 );
 
+router.get(
+  "/",
+  authController.protect,
+  authController.restrictTo("admin"),
+  policyEnrollmentController.getall
+);
+
 module.exports = router;

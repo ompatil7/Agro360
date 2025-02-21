@@ -7,6 +7,7 @@ import SigninPage from "./page/SigninPage";
 import Insurance from "./page/Insurance";
 import DashLayout from "./components/DashLayout";
 import AdminDashboard from "./components/DashboardComponents/AdminDashboard";
+import AllEnrollement from "./components/DashboardComponents/AllEnrollement";
 import UsersInformation from "./page/UsersInformation";
 import ErrorBoundary from "./ErrorBoundary";
 import InsuranceDetail from "./components/InsuranceDetail";
@@ -37,7 +38,6 @@ import PaymentSuccess from "./components/DashboardComponents/Farmer/PaymentSucce
 
 import DiseaseExpert from "./components/Features/AI_Features/DiseaseExpert";
 import GeneralExpert from "./components/Features/AI_Features/GeneralExpert";
-
 
 function App() {
   return (
@@ -140,6 +140,14 @@ function App() {
                   element={
                     <ProtectedRoute role="admin">
                       <AdminDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="allenrollement"
+                  element={
+                    <ProtectedRoute role="admin">
+                      <AllEnrollement />
                     </ProtectedRoute>
                   }
                 />

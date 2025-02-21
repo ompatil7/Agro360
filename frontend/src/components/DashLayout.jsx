@@ -18,9 +18,6 @@ const DashLayout = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-
-
-
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
@@ -28,14 +25,17 @@ const DashLayout = () => {
         toastOptions={{
           duration: 3000,
           style: {
-            padding: '16px',
-            borderRadius: '8px',
-            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+            padding: "16px",
+            borderRadius: "8px",
+            boxShadow:
+              "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
           },
         }}
       />
       <div
-        className={`${isSidebarOpen ? "" : "hidden"} sm:block w-64 bg-mycol-dartmouth_green text-white flex-shrink-0`}
+        className={`${
+          isSidebarOpen ? "" : "hidden"
+        } sm:block w-64 bg-mycol-dartmouth_green text-white flex-shrink-0`}
       >
         <div className="p-6">
           <h2 className="text-2xl font-bold mb-8">Dashboard</h2>
@@ -45,9 +45,10 @@ const DashLayout = () => {
               to=""
               end
               className={({ isActive }) =>
-                `flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive
-                  ? "bg-green-500/20 border border-green-500/30"
-                  : "hover:bg-green-500/20"
+                `flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+                  isActive
+                    ? "bg-green-500/20 border border-green-500/30"
+                    : "hover:bg-green-500/20"
                 }`
               }
             >
@@ -61,9 +62,10 @@ const DashLayout = () => {
                 <NavLink
                   to="my-insurances"
                   className={({ isActive }) =>
-                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive
-                      ? "bg-green-500/20 border border-green-500/30"
-                      : "hover:bg-green-500/20"
+                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+                      isActive
+                        ? "bg-green-500/20 border border-green-500/30"
+                        : "hover:bg-green-500/20"
                     }`
                   }
                 >
@@ -79,9 +81,10 @@ const DashLayout = () => {
                 <NavLink
                   to="create-insurance"
                   className={({ isActive }) =>
-                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive
-                      ? "bg-green-500/20 border border-green-500/30"
-                      : "hover:bg-green-500/20"
+                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+                      isActive
+                        ? "bg-green-500/20 border border-green-500/30"
+                        : "hover:bg-green-500/20"
                     }`
                   }
                 >
@@ -91,30 +94,43 @@ const DashLayout = () => {
                 <NavLink
                   to="admin-dashboard"
                   className={({ isActive }) =>
-                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive
-                      ? "bg-green-500/20 border border-green-500/30"
-                      : "hover:bg-green-500/20"
+                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+                      isActive
+                        ? "bg-green-500/20 border border-green-500/30"
+                        : "hover:bg-green-500/20"
                     }`
                   }
                 >
                   <Users className="w-5 h-5" />
                   <span>Farmers List</span>
                 </NavLink>
+                <NavLink
+                  to="allenrollement"
+                  className={({ isActive }) =>
+                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+                      isActive
+                        ? "bg-green-500/20 border border-green-500/30"
+                        : "hover:bg-green-500/20"
+                    }`
+                  }
+                >
+                  <Users className="w-5 h-5" />
+                  <span>all enrollements</span>
+                </NavLink>
 
                 <NavLink
                   to="assign-agents"
                   className={({ isActive }) =>
-                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive
-                      ? "bg-green-500/20 border border-green-500/30"
-                      : "hover:bg-green-500/20"
+                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+                      isActive
+                        ? "bg-green-500/20 border border-green-500/30"
+                        : "hover:bg-green-500/20"
                     }`
                   }
                 >
                   <CalendarCheck className="w-5 h-5" />
                   <span>Assign Agents</span>
                 </NavLink>
-
-
               </>
             )}
 
@@ -124,9 +140,10 @@ const DashLayout = () => {
                 <NavLink
                   to="assigned-insurances"
                   className={({ isActive }) =>
-                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive
-                      ? "bg-green-500/20 border border-green-500/30"
-                      : "hover:bg-green-500/20"
+                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+                      isActive
+                        ? "bg-green-500/20 border border-green-500/30"
+                        : "hover:bg-green-500/20"
                     }`
                   }
                 >
@@ -136,9 +153,10 @@ const DashLayout = () => {
                 <NavLink
                   to="assign-location"
                   className={({ isActive }) =>
-                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive
-                      ? "bg-green-500/20 border border-green-500/30"
-                      : "hover:bg-green-500/20"
+                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+                      isActive
+                        ? "bg-green-500/20 border border-green-500/30"
+                        : "hover:bg-green-500/20"
                     }`
                   }
                 >
@@ -149,9 +167,10 @@ const DashLayout = () => {
                 <NavLink
                   to="my-enrollments"
                   className={({ isActive }) =>
-                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive
-                      ? "bg-green-500/20 border border-green-500/30"
-                      : "hover:bg-green-500/20"
+                    `flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+                      isActive
+                        ? "bg-green-500/20 border border-green-500/30"
+                        : "hover:bg-green-500/20"
                     }`
                   }
                 >
@@ -206,13 +225,12 @@ const DashLayout = () => {
           </button>
         </div>
 
-
         {/* Content Area - Remove max-width and center alignment */}
         <div className="p-6">
           <Outlet />
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
 

@@ -14,6 +14,7 @@ router.get("/user", authController.user);
 router.get("/search", userController.searchUser);
 router.patch(
   "/updateme",
+  authController.protect, // Add this line to authenticate the user
   userController.resizeUserImage,
   userController.updateme
 );
