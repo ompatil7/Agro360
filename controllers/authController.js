@@ -55,16 +55,13 @@ exports.signup = catchAsync(async (req, res, next) => {
     });
 
     newUser.password = undefined;
+    const url = `${req.protocol}://localhost:5173/profile`;
 
+    await new Email(newUser, url).sendWelcome();
     createSendToken(newUser, 201, res);
   } catch (error) {
     if (error.code === 11000) {
-      return next(
-        new AppError(
-          "Email or phone number already exists. Please use a different email or phone number.",
-          400
-        )
-      );
+      return next(new AppError(error, 400));
     }
     return next(error);
   }

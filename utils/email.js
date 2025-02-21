@@ -30,16 +30,13 @@ module.exports = class Email {
   // Send the actual email
   async send(template, subject, booking, user) {
     console.log("First Name:", this.firstName); // Log the firstName
-    const html = pug.renderFile(
-      `${__dirname}/../emails/email/${template}.pug`,
-      {
-        firstName: this.firstName,
-        url: this.url,
-        subject,
-        booking,
-        user,
-      }
-    );
+    const html = pug.renderFile(`${__dirname}/../email/${template}.pug`, {
+      firstName: this.firstName,
+      url: this.url,
+      subject,
+      booking,
+      user,
+    });
 
     const mailOptions = {
       from: this.from,
@@ -56,7 +53,7 @@ module.exports = class Email {
   }
 
   async sendWelcome() {
-    await this.send("welcome", "Welcome to the ARROW Family!");
+    await this.send("welcome", "Welcome to the  Family!");
   }
 
   async sendPasswordReset() {

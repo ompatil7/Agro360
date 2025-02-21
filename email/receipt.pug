@@ -1,0 +1,171 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title CropShield Policy Receipt
+    style.
+      :root {
+        --field-green: #4CAF50;
+        --earth-brown: #6D4C41;
+        --sun-gold: #FFC107;
+        --sky-blue: #87CEEB;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+      }
+
+      .container {
+        max-width: 700px;
+        margin: 2rem auto;
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .header {
+        background: linear-gradient(135deg, var(--field-green) 0%, var(--earth-brown) 100%);
+        padding: 2.5rem;
+        text-align: center;
+        position: relative;
+      }
+
+      .header::after {
+        content: '';
+        position: absolute;
+        bottom: -30px;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 10" xmlns="http://www.w3.org/2000/svg"><path d="M0 10 Q 25 5 50 10 T 100 10 L 100 0 L 0 0" fill="white"/></svg>');
+      }
+
+      h1 {
+        color: white;
+        margin: 1rem 0;
+        font-size: 2.2em;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      }
+
+      .receipt-content {
+        padding: 3rem 2rem;
+      }
+
+      .farmer-details {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .detail-card {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 10px;
+        border-left: 4px solid var(--field-green);
+      }
+
+      .highlight {
+        color: var(--field-green);
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+
+      .policy-timeline {
+        display: flex;
+        justify-content: space-between;
+        background: #fff8e1;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 2rem 0;
+      }
+
+      .amount-box {
+        background: var(--field-green);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        text-align: center;
+        margin: 2rem 0;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background: var(--sun-gold);
+        color: #333 !important;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: bold;
+        transition: transform 0.3s ease;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+      }
+
+      .footer {
+        background: var(--earth-brown);
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+  body
+    .container
+      .header
+        h1 🛡️ CropShield Policy Receipt
+        p(style="color: rgba(255,255,255,0.9)") Protected Fields, Secure Future
+
+      .receipt-content
+        .farmer-details
+          h2(style="margin-bottom: 0.5rem") 🌾 #{booking.farmerName}
+          p Policy Number: #{booking.policyDetails.policyNumber}
+
+        .detail-grid
+          .detail-card
+            h3 📜 Policy Details
+            p Name: #{booking.policyDetails.policyName}
+            p Coverage Period: 
+              span.highlight #{new Date(booking.policyDetails.seasonDates.startDate).toDateString()} 
+              |  to 
+              span.highlight #{new Date(booking.policyDetails.seasonDates.endDate).toDateString()}
+
+          .detail-card
+            h3 💰 Financial Summary
+            p Sum Insured: ₹#{booking.policyDetails.sumInsured.toLocaleString()}
+            p Premium Paid: ₹#{booking.policyDetails.premium.toLocaleString()}
+            p Status: 🟢 Active
+
+        .amount-box
+          h3(style="margin: 0") Total Protected Value
+          p(style="font-size: 2em; margin: 0.5rem 0") ₹#{booking.policyDetails.sumInsured.toLocaleString()}
+          p(style="opacity: 0.9") Coverage for #{booking.policyDetails.policyName} season
+
+        .policy-timeline
+          div
+            h4 📅 Policy Start
+            p #{new Date(booking.policyDetails.seasonDates.startDate).toDateString()}
+          div
+            h4 📅 Policy End
+            p #{new Date(booking.policyDetails.seasonDates.endDate).toDateString()}
+
+        center
+          a.cta-button(href="#") Download Policy Document
+          p(style="margin-top: 1rem") Need help? Contact our 24/7 Farmer Support
+
+        .footer
+          p 🌱 Cultivating Security Since 2023
+          p 📞 1800-CROP-SHIELD | 📧 support@cropshield.in
+          p Follow us: 🌾 Instagram | 📘 Facebook | 🐦 Twitter

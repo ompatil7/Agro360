@@ -3,7 +3,7 @@ const FarmVisitTracking = require("../models/farmvisitTrackingModel"); // Adjust
 const InsurancePremiumPayment = require("../models/paymentModel");
 const catchAsync = require("../utils/catchAsync"); // Adjust path as needed
 const AppError = require("../utils/appError"); // Adjust path as needed
-
+const Email = require("./../utils/email");
 exports.getInsurancePremiumCheckoutSession = catchAsync(
   async (req, res, next) => {
     const { enrollmentId } = req.params;
@@ -76,6 +76,11 @@ exports.createPremiumPaymentCheckout = catchAsync(async (req, res, next) => {
     insurancePolicy: enrollmentData.insurancePolicy,
     policyDetails: enrollmentData.policyDetails,
   });
+
+  const url = `${req.protocol}://localhost:5173/profile`;
+
+  const email = new Email(req.user, url);
+  await email.sendBookingReceipt(paymentRecord);
   res.status(201).json({
     status: "success",
     message: "Insurance premium payment recorded successfully",
