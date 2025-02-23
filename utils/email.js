@@ -36,6 +36,7 @@ module.exports = class Email {
       subject,
       booking,
       user,
+      farmvisit,
     });
 
     const mailOptions = {
@@ -50,6 +51,9 @@ module.exports = class Email {
   }
   async sendBookingReceipt(booking) {
     await this.send("receipt", "Booking Receipt", booking);
+  }
+  async sendvist(farmvisit) {
+    await this.send("farmvisit", "Booking Receipt", farmvisit);
   }
 
   async sendWelcome() {

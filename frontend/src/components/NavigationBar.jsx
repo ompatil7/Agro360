@@ -127,7 +127,7 @@ function NavigationBar() {
                           <div className="flex items-center space-x-3">
                             {user.photo !== "default.jpg" ? (
                               <img
-                                src={user.image}
+                                src={user.photo}
                                 alt="Profile"
                                 className="w-8 h-8 rounded-full"
                               />

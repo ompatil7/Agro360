@@ -296,6 +296,7 @@ import {
   FaCloudRain,
   FaThermometerHalf,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const PolicyTracker = () => {
   const [policies, setPolicies] = useState([]);
@@ -351,214 +352,221 @@ const PolicyTracker = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
         {policies.map((policy) => (
-          <div
-            key={policy._id}
-            className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-emerald-50"
-          >
-            {/* Policy Header */}
-            <div className="bg-gradient-to-r from-emerald-700 to-teal-700 p-6">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-white/10 rounded-full">
-                  <FaTractor className="text-2xl text-white" />
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-white">
-                    {policy.policyDetails.policyName}
-                  </h2>
-                  <p className="text-emerald-100 text-sm mt-1">
-                    Policy No: {policy.policyDetails.policyNumber}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Policy Content */}
-            <div className="p-6 space-y-6">
-              {/* Farmer Information */}
-              <div className="bg-green-50 rounded-xl p-4 border border-green-100">
-                <div className="flex items-center gap-3 mb-3">
-                  <FaUser className="text-emerald-700" />
-                  <h3 className="font-semibold text-emerald-800">
-                    Farmer Details
-                  </h3>
-                </div>
-                <div className="space-y-2">
-                  <p className="flex items-center gap-2 text-sm">
-                    <span className="text-emerald-700">👤</span>
-                    {policy.farmerDetails.name}
-                  </p>
-                  <p className="flex items-center gap-2 text-sm">
-                    <span className="text-emerald-700">📞</span>
-                    {policy.farmerDetails.phone}
-                  </p>
-                  <p className="flex items-center gap-2 text-sm">
-                    <FaMapMarkerAlt className="text-emerald-700" />
-                    {policy.farmerDetails.address.district},{" "}
-                    {policy.farmerDetails.address.state}
-                  </p>
-                </div>
-              </div>
-
-              {/* Farm Statistics */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-amber-50 p-4 rounded-xl border border-amber-100">
-                  <div className="flex items-center gap-2 mb-2">
-                    <FaMapMarkerAlt className="text-amber-600" />
-                    <span className="text-sm font-medium text-amber-800">
-                      Area
-                    </span>
+          <Link to={`/insurance/${policy.insurancePolicy}`} key={policy._id}>
+            <div
+              key={policy._id}
+              className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-emerald-50"
+            >
+              {/* Policy Header */}
+              <div className="bg-gradient-to-r from-emerald-700 to-teal-700 p-6">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-white/10 rounded-full">
+                    <FaTractor className="text-2xl text-white" />
                   </div>
-                  <p className="text-2xl font-bold text-amber-700">
-                    {policy.farmDetails.areaSize}ha
-                  </p>
-                </div>
-
-                <div className="bg-teal-50 p-4 rounded-xl border border-teal-100">
-                  <div className="flex items-center gap-2 mb-2">
-                    <FaThermometerHalf className="text-teal-600" />
-                    <span className="text-sm font-medium text-teal-800">
-                      Irrigation
-                    </span>
+                  <div>
+                    <h2 className="text-xl font-bold text-white">
+                      {policy.policyDetails.policyName}
+                    </h2>
+                    <p className="text-emerald-100 text-sm mt-1">
+                      Policy No: {policy.policyDetails.policyNumber}
+                    </p>
                   </div>
-                  <p className="text-xl font-bold text-teal-700">
-                    {policy.farmDetails.irrigationType}
-                  </p>
                 </div>
               </div>
 
-              {/* Crop Details */}
-              <div className="bg-green-50 rounded-xl p-4 border border-green-100">
-                <div className="flex items-center gap-3 mb-4">
-                  <FaSeedling className="text-emerald-700" />
-                  <h3 className="font-semibold text-emerald-800">
-                    Crop Details
-                  </h3>
+              {/* Policy Content */}
+              <div className="p-6 space-y-6">
+                {/* Farmer Information */}
+                <div className="bg-green-50 rounded-xl p-4 border border-green-100">
+                  <div className="flex items-center gap-3 mb-3">
+                    <FaUser className="text-emerald-700" />
+                    <h3 className="font-semibold text-emerald-800">
+                      Farmer Details
+                    </h3>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="flex items-center gap-2 text-sm">
+                      <span className="text-emerald-700">👤</span>
+                      {policy.farmerDetails.name}
+                    </p>
+                    <p className="flex items-center gap-2 text-sm">
+                      <span className="text-emerald-700">📞</span>
+                      {policy.farmerDetails.phone}
+                    </p>
+                    <p className="flex items-center gap-2 text-sm">
+                      <FaMapMarkerAlt className="text-emerald-700" />
+                      {policy.farmerDetails.address.district},{" "}
+                      {policy.farmerDetails.address.state}
+                    </p>
+                  </div>
                 </div>
 
-                {policy.cropDetails.map((category, idx) => (
-                  <div key={idx} className="mb-6 last:mb-0">
-                    <h4 className="font-medium text-emerald-800 mb-3 pb-2 border-b border-emerald-100">
-                      {category.cropCategory}
-                    </h4>
-                    <div className="grid grid-cols-2 gap-3">
-                      {category.crops.map((crop, cropIdx) => (
-                        <div
-                          key={cropIdx}
-                          className="bg-white p-3 rounded-lg shadow-sm border border-green-50"
-                        >
-                          <div className="mb-2">
-                            <span className="font-medium text-gray-800 text-sm">
-                              {crop.cropType}
-                            </span>
-                          </div>
-
-                          {/* Climate Parameters */}
-                          <div className="space-y-2">
-                            <div className="flex items-center gap-2">
-                              <FaThermometerHalf className="text-red-400 text-xs" />
-                              <div className="flex-1 bg-gray-200 rounded-full h-1.5">
-                                <div
-                                  className="bg-gradient-to-r from-red-400 to-orange-400 h-1.5 rounded-full"
-                                  style={{
-                                    width: `${
-                                      (crop.thresholds.temperature
-                                        .minTemperature +
-                                        crop.thresholds.temperature
-                                          .maxTemperature) /
-                                      2
-                                    }%`,
-                                  }}
-                                ></div>
-                              </div>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                              <FaCloudRain className="text-blue-400 text-xs" />
-                              <div className="flex-1 bg-gray-200 rounded-full h-1.5">
-                                <div
-                                  className="bg-gradient-to-r from-blue-400 to-cyan-400 h-1.5 rounded-full"
-                                  style={{
-                                    width: `${
-                                      (crop.thresholds.rainfall.minRainfall +
-                                        crop.thresholds.rainfall.maxRainfall) /
-                                      25
-                                    }%`,
-                                  }}
-                                ></div>
-                              </div>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                              <FaThermometerHalf className="text-green-400 text-xs" />
-                              <div className="flex-1 bg-gray-200 rounded-full h-1.5">
-                                <div
-                                  className="bg-gradient-to-r from-green-400 to-emerald-400 h-1.5 rounded-full"
-                                  style={{
-                                    width: `${
-                                      (crop.thresholds.humidity.minHumidity +
-                                        crop.thresholds.humidity.maxHumidity) /
-                                      2
-                                    }%`,
-                                  }}
-                                ></div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Value Labels */}
-                          <div className="grid grid-cols-3 gap-1 mt-2">
-                            <span className="text-[10px] text-gray-600 text-center">
-                              {crop.thresholds.temperature.minTemperature}°-
-                              {crop.thresholds.temperature.maxTemperature}°C
-                            </span>
-                            <span className="text-[10px] text-gray-600 text-center">
-                              {crop.thresholds.rainfall.minRainfall}-
-                              {crop.thresholds.rainfall.maxRainfall}mm
-                            </span>
-                            <span className="text-[10px] text-gray-600 text-center">
-                              {crop.thresholds.humidity.minHumidity}-
-                              {crop.thresholds.humidity.maxHumidity}%
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Policy Footer */}
-              <div className="border-t pt-4">
-                <div className="flex flex-wrap justify-between items-center gap-4">
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2 text-sm text-emerald-700">
-                      <FaCalendarAlt />
-                      <span>
-                        {formatDate(policy.policyDetails.seasonDates.startDate)}{" "}
-                        - {formatDate(policy.policyDetails.seasonDates.endDate)}
+                {/* Farm Statistics */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-amber-50 p-4 rounded-xl border border-amber-100">
+                    <div className="flex items-center gap-2 mb-2">
+                      <FaMapMarkerAlt className="text-amber-600" />
+                      <span className="text-sm font-medium text-amber-800">
+                        Area
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-emerald-700">
-                      <FaMoneyBillWave />
-                      <span>Insured: ₹{policy.policyDetails.sumInsured}</span>
-                    </div>
+                    <p className="text-2xl font-bold text-amber-700">
+                      {policy.farmDetails.areaSize}ha
+                    </p>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm font-medium ${
-                        policy.payment === "done"
-                          ? "bg-green-100 text-green-800"
-                          : "bg-orange-100 text-orange-800"
-                      }`}
-                    >
-                      {policy.payment === "done" ? "Paid" : "Pending"}
-                    </span>
+                  <div className="bg-teal-50 p-4 rounded-xl border border-teal-100">
+                    <div className="flex items-center gap-2 mb-2">
+                      <FaThermometerHalf className="text-teal-600" />
+                      <span className="text-sm font-medium text-teal-800">
+                        Irrigation
+                      </span>
+                    </div>
+                    <p className="text-xl font-bold text-teal-700">
+                      {policy.farmDetails.irrigationType}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Crop Details */}
+                <div className="bg-green-50 rounded-xl p-4 border border-green-100">
+                  <div className="flex items-center gap-3 mb-4">
+                    <FaSeedling className="text-emerald-700" />
+                    <h3 className="font-semibold text-emerald-800">
+                      Crop Details
+                    </h3>
+                  </div>
+
+                  {policy.cropDetails.map((category, idx) => (
+                    <div key={idx} className="mb-6 last:mb-0">
+                      <h4 className="font-medium text-emerald-800 mb-3 pb-2 border-b border-emerald-100">
+                        {category.cropCategory}
+                      </h4>
+                      <div className="grid grid-cols-2 gap-3">
+                        {category.crops.map((crop, cropIdx) => (
+                          <div
+                            key={cropIdx}
+                            className="bg-white p-3 rounded-lg shadow-sm border border-green-50"
+                          >
+                            <div className="mb-2">
+                              <span className="font-medium text-gray-800 text-sm">
+                                {crop.cropType}
+                              </span>
+                            </div>
+
+                            {/* Climate Parameters */}
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2">
+                                <FaThermometerHalf className="text-red-400 text-xs" />
+                                <div className="flex-1 bg-gray-200 rounded-full h-1.5">
+                                  <div
+                                    className="bg-gradient-to-r from-red-400 to-orange-400 h-1.5 rounded-full"
+                                    style={{
+                                      width: `${
+                                        (crop.thresholds.temperature
+                                          .minTemperature +
+                                          crop.thresholds.temperature
+                                            .maxTemperature) /
+                                        2
+                                      }%`,
+                                    }}
+                                  ></div>
+                                </div>
+                              </div>
+
+                              <div className="flex items-center gap-2">
+                                <FaCloudRain className="text-blue-400 text-xs" />
+                                <div className="flex-1 bg-gray-200 rounded-full h-1.5">
+                                  <div
+                                    className="bg-gradient-to-r from-blue-400 to-cyan-400 h-1.5 rounded-full"
+                                    style={{
+                                      width: `${
+                                        (crop.thresholds.rainfall.minRainfall +
+                                          crop.thresholds.rainfall
+                                            .maxRainfall) /
+                                        25
+                                      }%`,
+                                    }}
+                                  ></div>
+                                </div>
+                              </div>
+
+                              <div className="flex items-center gap-2">
+                                <FaThermometerHalf className="text-green-400 text-xs" />
+                                <div className="flex-1 bg-gray-200 rounded-full h-1.5">
+                                  <div
+                                    className="bg-gradient-to-r from-green-400 to-emerald-400 h-1.5 rounded-full"
+                                    style={{
+                                      width: `${
+                                        (crop.thresholds.humidity.minHumidity +
+                                          crop.thresholds.humidity
+                                            .maxHumidity) /
+                                        2
+                                      }%`,
+                                    }}
+                                  ></div>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Value Labels */}
+                            <div className="grid grid-cols-3 gap-1 mt-2">
+                              <span className="text-[10px] text-gray-600 text-center">
+                                {crop.thresholds.temperature.minTemperature}°-
+                                {crop.thresholds.temperature.maxTemperature}°C
+                              </span>
+                              <span className="text-[10px] text-gray-600 text-center">
+                                {crop.thresholds.rainfall.minRainfall}-
+                                {crop.thresholds.rainfall.maxRainfall}mm
+                              </span>
+                              <span className="text-[10px] text-gray-600 text-center">
+                                {crop.thresholds.humidity.minHumidity}-
+                                {crop.thresholds.humidity.maxHumidity}%
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Policy Footer */}
+                <div className="border-t pt-4">
+                  <div className="flex flex-wrap justify-between items-center gap-4">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2 text-sm text-emerald-700">
+                        <FaCalendarAlt />
+                        <span>
+                          {formatDate(
+                            policy.policyDetails.seasonDates.startDate
+                          )}{" "}
+                          -{" "}
+                          {formatDate(policy.policyDetails.seasonDates.endDate)}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-emerald-700">
+                        <FaMoneyBillWave />
+                        <span>Insured: ₹{policy.policyDetails.sumInsured}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`px-3 py-1 rounded-full text-sm font-medium ${
+                          policy.payment === "done"
+                            ? "bg-green-100 text-green-800"
+                            : "bg-orange-100 text-orange-800"
+                        }`}
+                      >
+                        {policy.payment === "done" ? "Paid" : "Pending"}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

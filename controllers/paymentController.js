@@ -56,6 +56,37 @@ exports.getInsurancePremiumCheckoutSession = catchAsync(
   }
 );
 
+// exports.createPremiumPaymentCheckout = catchAsync(async (req, res, next) => {
+//   const { enrollment, payment } = req.query;
+
+//   if (!enrollment || payment !== "success") {
+//     return next(new AppError("Invalid payment confirmation", 400));
+//   }
+
+//   const enrollmentData = await FarmVisitTracking.findById(enrollment);
+//   if (!enrollmentData) {
+//     return next(new AppError("Enrollment not found", 404));
+//   }
+//   enrollmentData.payment = "done";
+//   await enrollmentData.save();
+//   const paymentRecord = await InsurancePremiumPayment.create({
+//     farmer: enrollmentData.farmer,
+//     farmerName: enrollmentData.farmerDetails.name,
+//     enrollement: enrollment,
+//     insurancePolicy: enrollmentData.insurancePolicy,
+//     policyDetails: enrollmentData.policyDetails,
+//   });
+
+//   const url = `${req.protocol}://localhost:5173/profile`;
+
+//   // const email = new Email(req.user, url);
+//   // await email.sendBookingReceipt(paymentRecord);
+//   res.status(201).json({
+//     status: "success",
+//     message: "Insurance premium payment recorded successfully",
+//     data: paymentRecord,
+//   });
+// });
 exports.createPremiumPaymentCheckout = catchAsync(async (req, res, next) => {
   const { enrollment, payment } = req.query;
 
@@ -67,20 +98,37 @@ exports.createPremiumPaymentCheckout = catchAsync(async (req, res, next) => {
   if (!enrollmentData) {
     return next(new AppError("Enrollment not found", 404));
   }
+
+  // Check if payment already exists
+  const existingPayment = await InsurancePremiumPayment.findOne({
+    enrollement: enrollment,
+  });
+
+  if (existingPayment) {
+    return next(new AppError("Payment already processed", 400));
+  }
+
   enrollmentData.payment = "done";
   await enrollmentData.save();
+
   const paymentRecord = await InsurancePremiumPayment.create({
     farmer: enrollmentData.farmer,
     farmerName: enrollmentData.farmerDetails.name,
     enrollement: enrollment,
     insurancePolicy: enrollmentData.insurancePolicy,
     policyDetails: enrollmentData.policyDetails,
+    paymentDetails: {
+      transactionId: `TXN-${Date.now()}-${Math.random()
+        .toString(36)
+        .substring(2, 15)}`,
+      amount: enrollmentData.policyDetails.premium,
+      status: "success",
+      paymentDate: new Date(),
+    },
   });
 
   const url = `${req.protocol}://localhost:5173/profile`;
 
-  const email = new Email(req.user, url);
-  await email.sendBookingReceipt(paymentRecord);
   res.status(201).json({
     status: "success",
     message: "Insurance premium payment recorded successfully",

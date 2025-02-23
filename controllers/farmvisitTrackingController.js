@@ -141,7 +141,7 @@ exports.getsinglefinal = catchAsync(async (req, res, next) => {
 });
 
 exports.getall = catchAsync(async (req, res, next) => {
-  const all = await PolicyEnrollment.find();
+  const all = await PolicyEnrollment.find().sort({ createdAt: -1 });
   if (!all) {
     return next(new AppError("nothing present here", 404));
   }

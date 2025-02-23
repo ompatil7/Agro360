@@ -2,7 +2,7 @@ const catchAsync = require("../utils/catchAsync");
 const User = require("../models/userModel");
 
 const Insurancepolicy = require("../models/insuranceModel");
-
+const Email = require("./../utils/email");
 const InsuranceAssignment = require("../models/assignmentModel");
 const AppError = require("../utils/appError");
 exports.createInsuranceAssignment = catchAsync(async (req, res, next) => {
@@ -13,17 +13,21 @@ exports.createInsuranceAssignment = catchAsync(async (req, res, next) => {
   console.log("Insurance Policy ID:", insurancePolicyId);
   console.log("Farmer ID:", farmerId);
 
+  // Check if models are properly imported
   if (!User || !Insurancepolicy) {
     return next(new AppError("Models are not properly imported", 500));
   }
 
+  // Fetch farmer and insurance policy
   const farmer = await User.findById(farmerId);
   const insurancePolicy = await Insurancepolicy.findById(insurancePolicyId);
 
+  // Validate farmer and insurance policy
   if (!farmer || !insurancePolicy) {
     return next(new AppError("Invalid farmer or insurance policy", 400));
   }
 
+  // Check for existing assignment
   const existingAssignment = await InsuranceAssignment.findOne({
     farmer: farmerId,
     insurancePolicy: insurancePolicyId,
@@ -35,6 +39,7 @@ exports.createInsuranceAssignment = catchAsync(async (req, res, next) => {
     );
   }
 
+  // Create new insurance assignment
   const assignment = await InsuranceAssignment.create({
     farmer: farmerId,
     insurancePolicy: insurancePolicyId,
@@ -45,8 +50,10 @@ exports.createInsuranceAssignment = catchAsync(async (req, res, next) => {
     status: "pending",
   });
 
+  // Send response
   res.status(201).json({
     status: "success",
+    message: "Insurance assignment created successfully",
     data: { assignment },
   });
 });
