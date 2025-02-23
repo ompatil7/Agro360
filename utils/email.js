@@ -67,7 +67,7 @@ module.exports = class Email {
     this.firstName = user.name.split(" ")[0];
     this.url = url;
 
-    this.from = `PRUTHVIJ DESAI <${process.env.GMAIL_ADDRESS}>`;
+    this.from = `PRUTHVIJ . P .DESAI <${process.env.GMAIL_ADDRESS}>`;
   }
 
   newTransport() {
