@@ -4,154 +4,53 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Welcome to CropGuard Assurance
-    style.
-      :root {
-        --earth-brown: #5D4037;
-        --crop-gold: #FFD54F;
-        --sky-blue: #81D4FA;
-        --field-green: #558B2F;
-        --harvest-orange: #EF6C00;
-      }
+    
+  body(style="margin: 0; padding: 0; background-color: #f6f9fc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;")
+    table(width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f6f9fc;")
+      tr
+        td(align="center" style="padding: 40px 0;")
+          table(width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);")
+            //- Header
+            tr
+              td(style="background: linear-gradient(135deg, #2D5A27 0%, #1B4332 100%); padding: 40px 20px; text-align: center; border-radius: 8px 8px 0 0;")
+                img(src="https://your-logo-url.com/logo.png" alt="CropGuard Logo" style="width: 120px; margin-bottom: 20px;")
+                h1(style="color: #ffffff; font-size: 28px; margin: 0; font-weight: 600;") Welcome to CropGuard 🌾
 
-      body {
-        margin: 0;
-        padding: 0;
-        background: #faf6ed;
-        font-family: 'Segoe UI', system-ui, sans-serif;
-      }
+            //- Content
+            tr
+              td(style="padding: 40px 30px; background-color: #ffffff;")
+                p(style="color: #1a1a1a; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;")
+                  | Dear #{firstName},
+                p(style="color: #1a1a1a; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;")
+                  | Your fields are now shielded with CropGuard's comprehensive protection. From seedling to harvest, we stand with you against nature's unpredictability.
 
-      .container {
-        max-width: 700px;
-        margin: 2rem auto;
-        background: white;
-        border-radius: 1rem;
-        overflow: hidden;
-        box-shadow: 0 1rem 3rem rgba(0,0,0,0.1);
-        border: 1px solid #eee8dd;
-      }
+                //- Features
+                table(width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 30px;")
+                  tr
+                    td(style="padding: 20px; background-color: #f8f9fa; border-radius: 8px; text-align: center;")
+                      h3(style="color: #2D5A27; margin: 0 0 10px 0; font-size: 18px;") 🌦️ Weather Shield
+                      p(style="color: #4a4a4a; margin: 0; font-size: 14px;") Full coverage against droughts, floods, and extreme weather events
 
-      .header {
-        background: linear-gradient(135deg, var(--earth-brown) 0%, var(--field-green) 100%);
-        padding: 4rem 2rem;
-        position: relative;
-        text-align: center;
-      }
+                  tr
+                    td(style="padding: 20px 0;")
 
-      .header::after {
-        content: '';
-        position: absolute;
-        bottom: -2rem;
-        left: 0;
-        width: 100%;
-        height: 4rem;
-        background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 Q 25 15 50 20 T 100 20 L 100 0 L 0 0" fill="white"/></svg>');
-      }
+                  tr
+                    td(style="padding: 20px; background-color: #f8f9fa; border-radius: 8px; text-align: center;")
+                      h3(style="color: #2D5A27; margin: 0 0 10px 0; font-size: 18px;") 🐛 Pest Guard
+                      p(style="color: #4a4a4a; margin: 0; font-size: 14px;") Protection from pest outbreaks and disease epidemics
 
-      .logo {
-        width: 8rem;
-        filter: drop-shadow(0 0.25rem 0.5rem rgba(0,0,0,0.2));
-      }
+                //- CTA Button
+                table(width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 30px 0;")
+                  tr
+                    td(align="center")
+                      a(href=url style="display: inline-block; padding: 14px 30px; background-color: #2D5A27; color: #ffffff; text-decoration: none; border-radius: 25px; font-weight: 600; font-size: 16px;") Activate Your Shield →
 
-      h1 {
-        color: white;
-        font-size: 2.5rem;
-        margin: 1.5rem 0;
-        text-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.3);
-      }
-
-      .content {
-        padding: 4rem 2rem;
-        background: linear-gradient(to bottom right, #fffdf9, #fff);
-      }
-
-      .welcome-message {
-        font-size: 1.1rem;
-        line-height: 1.75;
-        color: #4E342E;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-        margin: 3rem 0;
-      }
-
-      .feature-card {
-        background: rgba(255, 255, 255, 0.95);
-        padding: 2rem;
-        border-radius: 1rem;
-        border: 1px solid #eee8dd;
-        transition: all 0.3s ease;
-        text-align: center;
-      }
-
-      .feature-card:hover {
-        transform: translateY(-0.5rem);
-        box-shadow: 0 1rem 2rem rgba(0,0,0,0.05);
-      }
-
-      .cta-button {
-        display: inline-flex;
-        align-items: center;
-        padding: 1rem 2.5rem;
-        background: linear-gradient(45deg, var(--crop-gold), var(--harvest-orange));
-        color: white !important;
-        text-decoration: none;
-        border-radius: 2rem;
-        font-weight: 600;
-        margin: 2rem 0;
-        transition: transform 0.3s ease;
-      }
-
-      .cta-button:hover {
-        transform: scale(1.05);
-      }
-
-      .footer {
-        background: var(--earth-brown);
-        color: white;
-        padding: 2rem;
-        text-align: center;
-        border-top: 3px solid var(--crop-gold);
-      }
-
-  body
-    .container
-      .header
-        img.logo(src="https://example.com/logo.png", alt="CropGuard Logo")
-        h1 Welcome to CropGuard 🌾
-
-      .content
-        p.welcome-message
-          | Dear #{firstName},
-          br
-          | Your fields are now shielded with CropGuard's comprehensive protection. From seedling to harvest, we stand with you against nature's unpredictability.
-
-        .features-grid
-          .feature-card
-            h3 🌦️ Weather Shield
-            p Full coverage against droughts, floods, and extreme weather events
-          
-          .feature-card
-            h3 🐛 Pest Guard
-            p Protection from pest outbreaks and disease epidemics
-          
-          .feature-card
-            h3 💰 Yield Assurance
-            p Guaranteed compensation for verified crop losses
-
-        center
-          a.cta-button(href=`${url}`) Activate Your Shield →
-
-        p.welcome-message(style="text-align: center; margin-top: 2rem;")
-          | Our agricultural experts are available 24/7 to support your farming journey.
-          br
-          | Cultivate with confidence!
-
-      .footer
-        p 🌱 Nurturing Farmers' Dreams Since 2023
-        p 📞 1800-CROP-GUARD | ✉️ support@cropguard.in
-        p Follow the harvest: #[span 🌾 Instagram] #[span 📘 Facebook] #[span 🐦 Twitter]
+            //- Footer
+            tr
+              td(style="background-color: #1B4332; padding: 30px; text-align: center; border-radius: 0 0 8px 8px;")
+                p(style="color: #ffffff; margin: 0 0 10px 0; font-size: 14px;") 🌱 Nurturing Farmers' Dreams Since 2023
+                p(style="color: #ffffff; margin: 0 0 10px 0; font-size: 14px;") 
+                  | Need help? Contact us at 
+                  a(href="tel:1800CROPGUARD" style="color: #ffffff; text-decoration: none;") 1800-CROP-GUARD
+                p(style="color: #ffffff; margin: 0; font-size: 12px;") 
+                  | © 2024 CropGuard Assurance. All rights reserved.

@@ -57,7 +57,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     newUser.password = undefined;
     const url = `${req.protocol}://localhost:5173/profile`;
 
-    // await new Email(newUser, url).sendWelcome();
+    await new Email(newUser, url).sendWelcome();
     createSendToken(newUser, 201, res);
   } catch (error) {
     if (error.code === 11000) {
