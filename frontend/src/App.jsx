@@ -19,6 +19,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import UserProfile from "./components/DashboardComponents/UserProfile";
 import AssignedInsurances from "./components/DashboardComponents/Agent/AssignedInsurances";
 import DiseaseDetection from "./components/Features/DiseaseDetection";
+import SingleUserProfile from "./components/DashboardComponents/Farmer/SingleUser";
 import MarketPrices from "./components/Features/MarketPrices";
 import SoilAnalysis from "./components/Features/SoilAnalysis";
 import Cropvideo from "./components/Features/cropVideo";
@@ -99,11 +100,19 @@ function App() {
                 path="/profile"
                 element={
                   <ProtectedRoute>
-                    {" "}
-                    <DashLayout />{" "}
+                    <DashLayout />
                   </ProtectedRoute>
                 }
               >
+                {/* Admin-only user profile route */}
+                <Route
+                  path="user/:id"
+                  element={
+                    <ProtectedRoute role="admin">
+                      <SingleUserProfile />
+                    </ProtectedRoute>
+                  }
+                />
                 {/* All role profile page */}
                 <Route index element={<UserProfile />} />
 

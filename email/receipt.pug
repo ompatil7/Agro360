@@ -130,36 +130,36 @@ html(lang="en")
 
       .receipt-content
         .farmer-details
-          h2(style="margin-bottom: 0.5rem") 🌾 #{booking.farmerName}
-          p Policy Number: #{booking.policyDetails.policyNumber}
+          h2(style="margin-bottom: 0.5rem") 🌾 #{paymentRecord.farmerName}
+          p Policy Number: #{paymentRecord.policyDetails.policyNumber}
 
         .detail-grid
           .detail-card
             h3 📜 Policy Details
-            p Name: #{booking.policyDetails.policyName}
+            p Name: #{paymentRecord.policyDetails.policyName}
             p Coverage Period: 
-              span.highlight #{new Date(booking.policyDetails.seasonDates.startDate).toDateString()} 
+              span.highlight #{new Date(paymentRecord.policyDetails.seasonDates.startDate).toDateString()} 
               |  to 
-              span.highlight #{new Date(booking.policyDetails.seasonDates.endDate).toDateString()}
+              span.highlight #{new Date(paymentRecord.policyDetails.seasonDates.endDate).toDateString()}
 
           .detail-card
             h3 💰 Financial Summary
-            p Sum Insured: ₹#{booking.policyDetails.sumInsured.toLocaleString()}
-            p Premium Paid: ₹#{booking.policyDetails.premium.toLocaleString()}
+            p Sum Insured: ₹#{paymentRecord.policyDetails.sumInsured.toLocaleString()}
+            p Premium Paid: ₹#{paymentRecord.policyDetails.premium.toLocaleString()}
             p Status: 🟢 Active
 
         .amount-box
           h3(style="margin: 0") Total Protected Value
-          p(style="font-size: 2em; margin: 0.5rem 0") ₹#{booking.policyDetails.sumInsured.toLocaleString()}
-          p(style="opacity: 0.9") Coverage for #{booking.policyDetails.policyName} season
+          p(style="font-size: 2em; margin: 0.5rem 0") ₹#{paymentRecord.policyDetails.sumInsured.toLocaleString()}
+          p(style="opacity: 0.9") Coverage for #{paymentRecord.policyDetails.policyName} season
 
         .policy-timeline
           div
             h4 📅 Policy Start
-            p #{new Date(booking.policyDetails.seasonDates.startDate).toDateString()}
+            p #{new Date(paymentRecord.policyDetails.seasonDates.startDate).toDateString()}
           div
             h4 📅 Policy End
-            p #{new Date(booking.policyDetails.seasonDates.endDate).toDateString()}
+            p #{new Date(paymentRecord.policyDetails.seasonDates.endDate).toDateString()}
 
         center
           a.cta-button(href="#") Download Policy Document

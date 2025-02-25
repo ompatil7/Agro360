@@ -12,4 +12,23 @@ router.post(
   claimController.createClaim
 );
 
+router.get("/myclaims", authController.protect, claimController.getMyClaims);
+router.get(
+  "/statusclaim",
+  authController.protect,
+  claimController.getFarmerClaimStatus
+);
+router.get(
+  "/getallclaims",
+  authController.protect,
+  authController.restrictTo("admin"),
+  claimController.getAllClaims
+);
+router.get(
+  "/adminclaimstatus",
+  authController.protect,
+  authController.restrictTo("admin"),
+  claimController.getAdminClaimStatus
+);
+
 module.exports = router;

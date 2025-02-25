@@ -8,11 +8,9 @@ const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 
 const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith("image"))
-  {
+  if (file.mimetype.startsWith("image")) {
     cb(null, true);
-  } else
-  {
+  } else {
     cb(new AppError("Not an image! Please upload an image.", 400));
   }
 };
@@ -31,8 +29,7 @@ cloudinary.config({
 });
 
 const getWeatherData = async (lat, lon) => {
-  try
-  {
+  try {
     const response = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=b317a07404e3fc77db556222127779ba`
     );
@@ -42,8 +39,7 @@ const getWeatherData = async (lat, lon) => {
     const humidity = response.data.main.humidity;
 
     let rainfall = 0;
-    if (response.data.rain)
-    {
+    if (response.data.rain) {
       rainfall = response.data.rain["1h"] || response.data.rain["3h"] || 0;
     }
 
@@ -52,8 +48,7 @@ const getWeatherData = async (lat, lon) => {
       humidity,
       rainfall,
     };
-  } catch (error)
-  {
+  } catch (error) {
     console.error("Error fetching weather data:", error.message);
     return {
       temperature: null,
@@ -71,49 +66,43 @@ const checkWeatherThresholds = (weatherData, cropThresholds) => {
     notes: [],
   };
 
-  if (weatherData.temperature !== null)
-  {
-    if (weatherData.temperature < cropThresholds.temperature.minTemperature)
-    {
+  if (weatherData.temperature !== null) {
+    if (weatherData.temperature < cropThresholds.temperature.minTemperature) {
       thresholdResults.temperatureMinExceeded = true;
       thresholdResults.notes.push(
         `Temperature (${weatherData.temperature.toFixed(
           1
-        )}°C) is below minimum threshold of ${cropThresholds.temperature.minTemperature
+        )}°C) is below minimum threshold of ${
+          cropThresholds.temperature.minTemperature
         }°C.`
       );
-    } else
-    {
+    } else {
       thresholdResults.notes.push(
         `Temperature (${weatherData.temperature.toFixed(
           1
-        )}°C) is not below minimum threshold of ${cropThresholds.temperature.minTemperature
+        )}°C) is not below minimum threshold of ${
+          cropThresholds.temperature.minTemperature
         }°C.`
       );
     }
-  } else
-  {
+  } else {
     thresholdResults.notes.push(
       "Unable to verify temperature due to missing data."
     );
   }
 
-  if (weatherData.rainfall !== null)
-  {
-    if (weatherData.rainfall > cropThresholds.rainfall.maxRainfall)
-    {
+  if (weatherData.rainfall !== null) {
+    if (weatherData.rainfall > cropThresholds.rainfall.maxRainfall) {
       thresholdResults.rainfallMaxExceeded = true;
       thresholdResults.notes.push(
         `Rainfall (${weatherData.rainfall}mm) is above maximum threshold of ${cropThresholds.rainfall.maxRainfall}mm.`
       );
-    } else
-    {
+    } else {
       thresholdResults.notes.push(
         `Rainfall (${weatherData.rainfall}mm) is not above maximum threshold of ${cropThresholds.rainfall.maxRainfall}mm.`
       );
     }
-  } else
-  {
+  } else {
     thresholdResults.notes.push(
       "Unable to verify rainfall due to missing data."
     );
@@ -134,21 +123,18 @@ exports.createClaim = catchAsync(async (req, res, next) => {
     !geolocation?.coordinates ||
     !Array.isArray(geolocation.coordinates) ||
     geolocation.coordinates.length !== 2
-  )
-  {
+  ) {
     return next(new AppError("Valid geolocation coordinates required", 400));
   }
 
   const policyEnrollment = await PolicyEnrollment.findById(policyEnrollmentId);
-  if (!policyEnrollment)
-  {
+  if (!policyEnrollment) {
     return next(new AppError("Policy enrollment not found", 404));
   }
 
   const farmGeo = policyEnrollment.farmDetails?.geolocation;
   const farmRadius = policyEnrollment.farmDetails?.radius;
-  if (!farmGeo?.coordinates || typeof farmRadius !== "number")
-  {
+  if (!farmGeo?.coordinates || typeof farmRadius !== "number") {
     return next(new AppError("Invalid farm location data in policy", 400));
   }
 
@@ -176,8 +162,7 @@ exports.createClaim = catchAsync(async (req, res, next) => {
   const crops = policyEnrollment.cropDetails.flatMap(
     (category) => category.crops
   );
-  if (!crops || !crops.length)
-  {
+  if (!crops || !crops.length) {
     return next(new AppError("No crops found in policy enrollment", 400));
   }
 
@@ -189,16 +174,13 @@ exports.createClaim = catchAsync(async (req, res, next) => {
   let status = "rejected";
   let statusReason = "";
 
-  if (!isWithinFarm)
-  {
+  if (!isWithinFarm) {
     statusReason =
       "Location verification failed. User is not within farm boundaries.";
-  } else if (!thresholdResults.thresholdSatisfied)
-  {
+  } else if (!thresholdResults.thresholdSatisfied) {
     statusReason =
       "No weather thresholds were satisfied. Need either temperature below minimum or rainfall above maximum.";
-  } else
-  {
+  } else {
     status = "approved";
     statusReason =
       "User is within farm boundaries and at least one weather threshold is satisfied.";
@@ -206,21 +188,23 @@ exports.createClaim = catchAsync(async (req, res, next) => {
 
   const timestamp = new Date().toISOString();
 
-  let detailedNote = `Claim Report for ${cropType} | ${timestamp} | Location: ${isWithinFarm ? "PASSED" : "FAILED"
-    } (Distance: ${distance}m, Radius: ${farmRadius}m) | Weather: Temp ${weatherData.temperature?.toFixed(
-      1
-    )}°C, Rain ${weatherData.rainfall}mm | Thresholds: Min Temp ${cropThresholds.temperature.minTemperature
-    }°C (${thresholdResults.temperatureMinExceeded ? "✔" : "✘"}), Max Rain ${cropThresholds.rainfall.maxRainfall
-    }mm (${thresholdResults.rainfallMaxExceeded ? "✔" : "✘"
-    }) | Decision: ${status.toUpperCase()} | Reason: ${statusReason}`;
+  let detailedNote = `Claim Report for ${cropType} | ${timestamp} | Location: ${
+    isWithinFarm ? "PASSED" : "FAILED"
+  } (Distance: ${distance}m, Radius: ${farmRadius}m) | Weather: Temp ${weatherData.temperature?.toFixed(
+    1
+  )}°C, Rain ${weatherData.rainfall}mm | Thresholds: Min Temp ${
+    cropThresholds.temperature.minTemperature
+  }°C (${thresholdResults.temperatureMinExceeded ? "✔" : "✘"}), Max Rain ${
+    cropThresholds.rainfall.maxRainfall
+  }mm (${
+    thresholdResults.rainfallMaxExceeded ? "✔" : "✘"
+  }) | Decision: ${status.toUpperCase()} | Reason: ${statusReason}`;
 
   let existingClaim = await Claim.findOne({ policyEnrollmentId });
 
   const photoUrls = [];
-  if (req.files && req.files.length > 0)
-  {
-    for (const file of req.files)
-    {
+  if (req.files && req.files.length > 0) {
+    for (const file of req.files) {
       const result = await cloudinary.uploader.upload(
         `data:${file.mimetype};base64,${file.buffer.toString("base64")}`,
         {
@@ -231,10 +215,8 @@ exports.createClaim = catchAsync(async (req, res, next) => {
     }
   }
 
-  if (existingClaim)
-  {
-    if (existingClaim.status === "approved")
-    {
+  if (existingClaim) {
+    if (existingClaim.status === "approved") {
       return next(
         new AppError("Claim already approved. Cannot submit again.", 400)
       );
@@ -259,8 +241,7 @@ exports.createClaim = catchAsync(async (req, res, next) => {
       currentWeather: weatherData,
       thresholdResults: thresholdResults,
     });
-  } else
-  {
+  } else {
     const claim = await Claim.create({
       policyEnrollmentId,
       farmer: req.user.id,
@@ -284,4 +265,74 @@ exports.createClaim = catchAsync(async (req, res, next) => {
       thresholdResults: thresholdResults,
     });
   }
+});
+
+exports.getMyClaims = catchAsync(async (req, res, next) => {
+  const farmerId = req.user.id;
+
+  const claims = await Claim.find({ farmer: farmerId }).populate(
+    "policyEnrollmentId"
+  );
+
+  res.status(200).json({
+    status: "success",
+    results: claims.length,
+    data: {
+      claims,
+    },
+  });
+});
+
+exports.getFarmerClaimStatus = catchAsync(async (req, res, next) => {
+  const farmerId = req.user.id;
+  const { status } = req.params;
+
+  if (!["approved", "rejected"].includes(status)) {
+    return next(
+      new AppError("Invalid status. Use 'approved' or 'rejected'.", 400)
+    );
+  }
+
+  const claims = await Claim.find({ farmer: farmerId, status }).populate(
+    "policyEnrollmentId"
+  );
+
+  res.status(200).json({
+    status: "success",
+    results: claims.length,
+    data: {
+      claims,
+    },
+  });
+});
+
+exports.getAllClaims = catchAsync(async (req, res, next) => {
+  const claims = await Claim.find().populate("policyEnrollmentId");
+
+  res.status(200).json({
+    status: "success",
+    results: claims.length,
+    data: {
+      claims,
+    },
+  });
+});
+exports.getAdminClaimStatus = catchAsync(async (req, res, next) => {
+  const { status } = req.params;
+
+  if (!["approved", "rejected"].includes(status)) {
+    return next(
+      new AppError("Invalid status. Use 'approved' or 'rejected'.", 400)
+    );
+  }
+
+  const claims = await Claim.find({ status }).populate("policyEnrollmentId");
+
+  res.status(200).json({
+    status: "success",
+    results: claims.length,
+    data: {
+      claims,
+    },
+  });
 });

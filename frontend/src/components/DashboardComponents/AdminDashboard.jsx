@@ -143,3 +143,223 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+// import { useState, useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
+// import axios from "axios";
+// import {
+//   User,
+//   Mail,
+//   Phone,
+//   MapPin,
+//   Calendar,
+//   Sprout,
+//   Droplet,
+//   Thermometer,
+//   CloudRain,
+//   Waves,
+//   Loader2,
+// } from "lucide-react";
+
+// const UserProfile = () => {
+//   const navigate = useNavigate();
+//   const [userData, setUserData] = useState(null);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+
+//   useEffect(() => {
+//     const fetchUserData = async () => {
+//       try {
+//         const response = await axios.get(
+//           "/api/v1/users/67b97d6294d85dadcdf61b7a"
+//         );
+//         setUserData(response.data.data.user);
+//         setLoading(false);
+//       } catch (err) {
+//         setError("Failed to load user data");
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchUserData();
+//   }, []);
+
+//   if (loading) {
+//     return (
+//       <div className="flex justify-center items-center h-screen">
+//         <Loader2 className="animate-spin w-8 h-8 text-green-600" />
+//       </div>
+//     );
+//   }
+
+//   if (error) {
+//     return <div className="text-red-500 text-center mt-8">Error: {error}</div>;
+//   }
+
+//   return (
+//     <div className="min-h-screen bg-gray-50 p-8">
+//       {/* User Profile Section */}
+//       <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-md overflow-hidden mb-8">
+//         <div className="p-8">
+//           <div className="flex items-center gap-6 mb-6">
+//             <div className="bg-green-100 p-4 rounded-full">
+//               <User className="w-8 h-8 text-green-600" />
+//             </div>
+//             <div>
+//               <h1 className="text-2xl font-bold text-gray-800">
+//                 {userData.name}
+//               </h1>
+//               <p className="text-gray-600">{userData.role}</p>
+//             </div>
+//           </div>
+
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+//             <div className="flex items-center gap-4">
+//               <Mail className="w-5 h-5 text-gray-500" />
+//               <span>{userData.email}</span>
+//             </div>
+//             <div className="flex items-center gap-4">
+//               <Phone className="w-5 h-5 text-gray-500" />
+//               <span>{userData.phone}</span>
+//             </div>
+//             <div className="flex items-center gap-4">
+//               <MapPin className="w-5 h-5 text-gray-500" />
+//               <span>
+//                 {userData.address.street}, {userData.address.city},{" "}
+//                 {userData.address.state}
+//               </span>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Policies Section */}
+//       <div className="max-w-6xl mx-auto">
+//         <h2 className="text-xl font-semibold mb-4">Policy Enrollments</h2>
+
+//         {userData.policyEnrollments.map((policy) => (
+//           <div
+//             key={policy.id}
+//             className="bg-white rounded-xl shadow-md p-6 mb-6"
+//           >
+//             {/* Policy Header */}
+//             <div className="border-b pb-4 mb-4">
+//               <h3 className="text-lg font-semibold text-green-700">
+//                 {policy.policyDetails.policyName}
+//               </h3>
+//               <p className="text-gray-600">
+//                 {policy.policyDetails.policyNumber}
+//               </p>
+//             </div>
+
+//             {/* Policy Details */}
+//             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+//               <div className="flex items-center gap-3">
+//                 <Calendar className="w-5 h-5 text-green-600" />
+//                 <div>
+//                   <p className="text-sm text-gray-500">Coverage Period</p>
+//                   <p>
+//                     {new Date(
+//                       policy.policyDetails.seasonDates.startDate
+//                     ).toLocaleDateString()}{" "}
+//                     -{" "}
+//                     {new Date(
+//                       policy.policyDetails.seasonDates.endDate
+//                     ).toLocaleDateString()}
+//                   </p>
+//                 </div>
+//               </div>
+//               <div>
+//                 <p className="text-sm text-gray-500">Sum Insured</p>
+//                 <p className="font-semibold">
+//                   ₹{policy.policyDetails.sumInsured.toLocaleString()}
+//                 </p>
+//               </div>
+//               <div>
+//                 <p className="text-sm text-gray-500">Premium</p>
+//                 <p className="font-semibold">₹{policy.policyDetails.premium}</p>
+//               </div>
+//             </div>
+
+//             {/* Farm Details */}
+//             <div className="border-t pt-4 mb-6">
+//               <h4 className="font-semibold mb-4 flex items-center gap-2">
+//                 <Sprout className="w-5 h-5 text-green-600" />
+//                 Farm Details
+//               </h4>
+//               <div className="grid grid-cols-2 gap-4">
+//                 <div>
+//                   <p className="text-sm text-gray-500">Irrigation Type</p>
+//                   <p>{policy.farmDetails.irrigationType}</p>
+//                 </div>
+//                 <div>
+//                   <p className="text-sm text-gray-500">Area Size</p>
+//                   <p>{policy.farmDetails.areaSize} acres</p>
+//                 </div>
+//                 <div>
+//                   <p className="text-sm text-gray-500">Location</p>
+//                   <p>
+//                     {policy.farmDetails.geolocation.coordinates[1]},{" "}
+//                     {policy.farmDetails.geolocation.coordinates[0]}
+//                   </p>
+//                 </div>
+//               </div>
+//             </div>
+
+//             {/* Crop Details */}
+//             <div className="border-t pt-4">
+//               <h4 className="font-semibold mb-4 flex items-center gap-2">
+//                 <Droplet className="w-5 h-5 text-green-600" />
+//                 Insured Crops
+//               </h4>
+//               <div className="space-y-6">
+//                 {policy.cropDetails.map((category, catIndex) => (
+//                   <div key={catIndex} className="bg-gray-50 p-4 rounded-lg">
+//                     <h5 className="font-medium mb-3">
+//                       {category.cropCategory}
+//                     </h5>
+//                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+//                       {category.crops.map((crop, cropIndex) => (
+//                         <div
+//                           key={cropIndex}
+//                           className="bg-white p-4 rounded-md shadow-sm"
+//                         >
+//                           <p className="font-medium mb-2">{crop.cropType}</p>
+//                           <div className="space-y-2">
+//                             <div className="flex items-center gap-2">
+//                               <Thermometer className="w-4 h-4 text-gray-500" />
+//                               <span className="text-sm">
+//                                 Temp:{" "}
+//                                 {crop.thresholds.temperature.minTemperature}°C -{" "}
+//                                 {crop.thresholds.temperature.maxTemperature}°C
+//                               </span>
+//                             </div>
+//                             <div className="flex items-center gap-2">
+//                               <CloudRain className="w-4 h-4 text-gray-500" />
+//                               <span className="text-sm">
+//                                 Rainfall: {crop.thresholds.rainfall.minRainfall}
+//                                 mm - {crop.thresholds.rainfall.maxRainfall}mm
+//                               </span>
+//                             </div>
+//                             <div className="flex items-center gap-2">
+//                               <Waves className="w-4 h-4 text-gray-500" />
+//                               <span className="text-sm">
+//                                 Humidity: {crop.thresholds.humidity.minHumidity}
+//                                 % - {crop.thresholds.humidity.maxHumidity}%
+//                               </span>
+//                             </div>
+//                           </div>
+//                         </div>
+//                       ))}
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default UserProfile;

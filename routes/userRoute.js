@@ -14,13 +14,14 @@ router.get("/user", authController.user);
 router.get("/search", userController.searchUser);
 router.patch(
   "/updateme",
-  authController.protect, // Add this line to authenticate the user
+  authController.protect,
   userController.resizeUserImage,
   userController.updateme
 );
 router.patch("/updateMyPassword", authController.updatePassword);
 router.use(authController.protect);
-router.use(authController.restrictTo("admin", "agent", "user"));
+router.use(authController.restrictTo("admin", "agent"));
 
 router.route("/").get(userController.getalluser);
+router.get("/:id", userController.getUserDetails);
 module.exports = router;

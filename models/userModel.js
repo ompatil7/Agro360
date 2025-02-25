@@ -118,7 +118,11 @@ const userSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
-
+userSchema.virtual("policyEnrollments", {
+  ref: "PolicyEnrollment",
+  foreignField: "farmer",
+  localField: "_id",
+});
 userSchema.post("save", function (error, doc, next) {
   if (error.name === "MongoServerError" && error.code === 11000) {
     next(new Error("Email or phonenumber address already exists"));
@@ -127,22 +131,6 @@ userSchema.post("save", function (error, doc, next) {
   }
 });
 
-// userSchema.pre("save", async function (next) {
-//   if (this.isNew) {
-//     const existingEmail = await User.findOne({ email: this.email });
-//     const existingPhone = await User.findOne({ phone: this.phone });
-
-//     if (existingEmail) {
-//       next(new Error("Email address is already registered"));
-//     }
-//     if (existingPhone) {
-//       next(new Error("Phone number is already registered"));
-//     }
-//   }
-//   next();
-// });
-
-// Your existing middleware and methods remain the same
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();

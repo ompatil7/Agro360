@@ -128,7 +128,8 @@ exports.createPremiumPaymentCheckout = catchAsync(async (req, res, next) => {
   });
 
   const url = `${req.protocol}://localhost:5173/profile`;
-
+  const email = new Email(req.user, url);
+  await email.sendBookingReceipt(paymentRecord);
   res.status(201).json({
     status: "success",
     message: "Insurance premium payment recorded successfully",
