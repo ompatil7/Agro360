@@ -1,0 +1,329 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "enrollmentHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "CropCategoriesAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "enrollmentHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "EnrollmentCreated",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "enrollmentHash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "string[]",
+        "name": "categories",
+        "type": "string[]"
+      }
+    ],
+    "name": "addCropCategories",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "enrollmentHash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "string",
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "payment",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "enrollmentDate",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "startDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "policyName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "policyNumber",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sumInsured",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "premium",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct CropInsuranceContract.PolicyDetails",
+        "name": "policy",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "areaSize",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "irrigationType",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "radius",
+            "type": "uint256"
+          },
+          {
+            "internalType": "int256",
+            "name": "latitude",
+            "type": "int256"
+          },
+          {
+            "internalType": "int256",
+            "name": "longitude",
+            "type": "int256"
+          }
+        ],
+        "internalType": "struct CropInsuranceContract.FarmDetails",
+        "name": "farm",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "district",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct CropInsuranceContract.FarmerDetails",
+        "name": "farmer",
+        "type": "tuple"
+      }
+    ],
+    "name": "createEnrollment",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "cropCategories",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "name": "enrollments",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "payment",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "enrollmentDate",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "startDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "policyName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "policyNumber",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sumInsured",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "premium",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct CropInsuranceContract.PolicyDetails",
+        "name": "policy",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "areaSize",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "irrigationType",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "radius",
+            "type": "uint256"
+          },
+          {
+            "internalType": "int256",
+            "name": "latitude",
+            "type": "int256"
+          },
+          {
+            "internalType": "int256",
+            "name": "longitude",
+            "type": "int256"
+          }
+        ],
+        "internalType": "struct CropInsuranceContract.FarmDetails",
+        "name": "farm",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "district",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct CropInsuranceContract.FarmerDetails",
+        "name": "farmer",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

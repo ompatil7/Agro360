@@ -1,0 +1,212 @@
+Enrollment data: {
+    "policyDetails": {
+        "seasonDates": {
+            "startDate": "2024-07-04T00:00:00.000Z",
+            "endDate": "2025-10-23T00:00:00.000Z"
+        },
+        "policyName": "Kharif Crop Protection",
+        "policyNumber": "CROP-1740140395243-512",
+        "sumInsured": 200000,
+        "premium": 5000
+    },
+    "farmDetails": {
+        "geolocation": {
+            "type": "Point",
+            "coordinates": [
+                73.7470024,
+                20.0092286
+            ]
+        },
+        "areaSize": 266,
+        "irrigationType": "Drip",
+        "radius": 266
+    },
+    "farmerDetails": {
+        "address": {
+            "state": "MAHARASHTRA",
+            "district": "NASHIK"
+        },
+        "name": "Deepak Sharma",
+        "email": "deepak@gmail.com",
+        "phone": "1234123411"
+    },
+    "_id": "67c313b15a4e1af005912b48",
+    "insuranceAssignment": "67c313405a4e1af005912ac1",
+    "farmVisit": "67c313a95a4e1af005912b37",
+    "farmer": {
+        "address": {
+            "street": "FLAT NO 3, SHRIHARI APT.,",
+            "city": "NASHIK",
+            "district": "NASHIK",
+            "state": "MAHARASHTRA",
+            "pincode": "422013",
+            "landmark": ""
+        },
+        "_id": "67c305ffb841193e41109172",
+        "name": "Deepak Sharma",
+        "email": "deepak@gmail.com",
+        "phone": "1234123411",
+        "photo": "default.jpg",
+        "role": "user",
+        "createdAt": "2025-03-01T13:03:54.733Z",
+        "__v": 0,
+        "id": "67c305ffb841193e41109172"
+    },
+    "agent": {
+        "address": {
+            "street": "VIVEKANAND NAGAR",
+            "city": "NASHIK",
+            "district": "NASHIK",
+            "state": "MAHARASHTRA",
+            "pincode": "422015",
+            "landmark": "GURUJI HOSPITAL"
+        },
+        "_id": "67b56eab42e7d443269c7136",
+        "name": "Chaitali Kapse",
+        "email": "chaitalikapse50@gmail.com",
+        "phone": "7248994323",
+        "photo": "https://res.cloudinary.com/pruthvij/image/upload/v1740203945/cropinsurance/users/hcypj8okjzbjokp8vjyx.jpg",
+        "role": "agent",
+        "createdAt": "2025-02-19T05:36:35.786Z",
+        "__v": 0,
+        "id": "67b56eab42e7d443269c7136"
+    },
+    "insurancePolicy": "67b86f6bc71ce70faf9001d3",
+    "cropDetails": [
+        {
+            "cropCategory": "Cereals",
+            "crops": [
+                {
+                    "thresholds": {
+                        "temperature": {
+                            "minTemperature": 10,
+                            "maxTemperature": 25
+                        },
+                        "rainfall": {
+                            "minRainfall": 500,
+                            "maxRainfall": 1200
+                        },
+                        "humidity": {
+                            "minHumidity": 50,
+                            "maxHumidity": 70
+                        }
+                    },
+                    "cropType": "Wheat",
+                    "_id": "67c313b15a4e1af005912b4a",
+                    "id": "67c313b15a4e1af005912b4a"
+                },
+                {
+                    "thresholds": {
+                        "temperature": {
+                            "minTemperature": 20,
+                            "maxTemperature": 35
+                        },
+                        "rainfall": {
+                            "minRainfall": 1000,
+                            "maxRainfall": 2500
+                        },
+                        "humidity": {
+                            "minHumidity": 70,
+                            "maxHumidity": 90
+                        }
+                    },
+                    "cropType": "Rice",
+                    "_id": "67c313b15a4e1af005912b4b",
+                    "id": "67c313b15a4e1af005912b4b"
+                },
+                {
+                    "thresholds": {
+                        "temperature": {
+                            "minTemperature": 18,
+                            "maxTemperature": 32
+                        },
+                        "rainfall": {
+                            "minRainfall": 500,
+                            "maxRainfall": 800
+                        },
+                        "humidity": {
+                            "minHumidity": 50,
+                            "maxHumidity": 80
+                        }
+                    },
+                    "cropType": "Maize",
+                    "_id": "67c313b15a4e1af005912b4c",
+                    "id": "67c313b15a4e1af005912b4c"
+                }
+            ],
+            "_id": "67c313b15a4e1af005912b49",
+            "id": "67c313b15a4e1af005912b49"
+        },
+        {
+            "cropCategory": "Pulses",
+            "crops": [
+                {
+                    "thresholds": {
+                        "temperature": {
+                            "minTemperature": 15,
+                            "maxTemperature": 30
+                        },
+                        "rainfall": {
+                            "minRainfall": 300,
+                            "maxRainfall": 600
+                        },
+                        "humidity": {
+                            "minHumidity": 40,
+                            "maxHumidity": 50
+                        }
+                    },
+                    "cropType": "Chickpea",
+                    "_id": "67c313b15a4e1af005912b4e",
+                    "id": "67c313b15a4e1af005912b4e"
+                },
+                {
+                    "thresholds": {
+                        "temperature": {
+                            "minTemperature": 18,
+                            "maxTemperature": 28
+                        },
+                        "rainfall": {
+                            "minRainfall": 400,
+                            "maxRainfall": 700
+                        },
+                        "humidity": {
+                            "minHumidity": 50,
+                            "maxHumidity": 60
+                        }
+                    },
+                    "cropType": "Lentil",
+                    "_id": "67c313b15a4e1af005912b4f",
+                    "id": "67c313b15a4e1af005912b4f"
+                }
+            ],
+            "_id": "67c313b15a4e1af005912b4d",
+            "id": "67c313b15a4e1af005912b4d"
+        }
+    ],
+    "status": "active",
+    "payment": "pending",
+    "enrollmentDate": "2025-03-01T14:03:29.512Z",
+    "createdAt": "2025-03-01T14:03:29.516Z",
+    "updatedAt": "2025-03-01T14:03:29.516Z",
+    "__v": 0,
+    "id": "67c313b15a4e1af005912b48"
+}
+Authorization failed. User ID: 67c305ffb841193e41109172 Farmer ID: {
+  address: {
+    street: 'FLAT NO 3, SHRIHARI APT.,',
+    city: 'NASHIK',
+    district: 'NASHIK',
+    state: 'MAHARASHTRA',
+    pincode: '422013',
+    landmark: ''
+    },
+  _id: new ObjectId('67c305ffb841193e41109172'),
+  name: 'Deepak Sharma',
+  email: 'deepak@gmail.com',
+  phone: '1234123411',
+  photo: 'default.jpg',
+  role: 'user',
+  createdAt: 2025-03-01T13: 03: 54.733Z,
+  __v: 0,
+  id: '67c305ffb841193e41109172'
+}

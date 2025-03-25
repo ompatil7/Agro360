@@ -1,0 +1,385 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "insuranceId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "cropType",
+        "type": "string"
+      }
+    ],
+    "name": "CropAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "insuranceId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes12",
+        "name": "farmerId",
+        "type": "bytes12"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "policyNumber",
+        "type": "string"
+      }
+    ],
+    "name": "InsurancePurchased",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "insuranceId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "string",
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "cropType",
+        "type": "string"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "minTemperature",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxTemperature",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minRainfall",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxRainfall",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minHumidity",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxHumidity",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct InsuranceContract.CropThresholds",
+        "name": "thresholds",
+        "type": "tuple"
+      }
+    ],
+    "name": "addCropToInsurance",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "insuranceCrops",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "category",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "name": "insurances",
+    "outputs": [
+      {
+        "internalType": "bytes12",
+        "name": "farmerId",
+        "type": "bytes12"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "district",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct InsuranceContract.UserDetails",
+        "name": "farmerDetails",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "policyName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "policyNumber",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sumInsured",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "premium",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endDate",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct InsuranceContract.PolicyDetails",
+        "name": "policyDetails",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "areaSize",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "irrigationType",
+            "type": "string"
+          },
+          {
+            "internalType": "int256[2]",
+            "name": "coordinates",
+            "type": "int256[2]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "radius",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct InsuranceContract.FarmDetails",
+        "name": "farmDetails",
+        "type": "tuple"
+      },
+      {
+        "internalType": "string",
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "paymentStatus",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "enrollmentDate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "isActive",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "insuranceId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes12",
+        "name": "farmerId",
+        "type": "bytes12"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "district",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct InsuranceContract.UserDetails",
+        "name": "_farmerDetails",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "policyName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "policyNumber",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sumInsured",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "premium",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endDate",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct InsuranceContract.PolicyDetails",
+        "name": "_policyDetails",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "areaSize",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "irrigationType",
+            "type": "string"
+          },
+          {
+            "internalType": "int256[2]",
+            "name": "coordinates",
+            "type": "int256[2]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "radius",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct InsuranceContract.FarmDetails",
+        "name": "_farmDetails",
+        "type": "tuple"
+      }
+    ],
+    "name": "purchaseInsurance",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
